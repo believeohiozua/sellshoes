@@ -1,0 +1,34 @@
+name: API CHECKS
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Startup Services
+        run: docker compose up -d
+
+      - name: Await Services
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "5s"
+
+      - name: Show Services Logs
+        run: docker compose logs
+
+      - name: Run All Migrations
+        run: docker compose exec -T api poetry run python manage.py migrate
+        
+ #TODO: Uncomment this block to run API tests
+    #   - name: Run Unit Tests
+    #     run: docker compose exec be pytest -v
+
+    #   - name: Run API Tests
+    #     run: docker compose exec be schemathesis run https://127.0.0.1:8000/api-test/swagger.json --request-tls-verify=false -v
+
+      - name: Shutdown Services
+        run: docker compose down -v

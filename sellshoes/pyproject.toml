@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "sellshoes"
+version = "0.1.0"
+description = ""
+authors = ["believeohiozua <believe.ohiozua@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+asgiref = "3.8.1"
+django = "5.1.4"
+python-decouple = "3.8"
+sqlparse = "0.5.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

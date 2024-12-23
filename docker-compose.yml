@@ -1,0 +1,38 @@
+x-database-envs: &database-envs
+  POSTGRES_DB: sellshoesdb
+  POSTGRES_PASSWORD: password
+  POSTGRES_USER: postgres
+
+x-api-vars: &api-vars
+  DATABASE_URL: postgres://postgres:password@database:5432/sellshoesdb
+
+services:
+
+  database:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      <<: *database-envs
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data    
+    networks:
+      - sellShoeNetwork
+
+  api:
+    build:
+      context: .
+    image: sellshoes
+    restart: always
+    command: poetry run python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000    
+    depends_on:
+      - database
+    volumes:
+      - ./sellshoes:/sellshoes/app/
+    networks:
+      - sellShoeNetwork
+  
+networks:
+  sellShoeNetwork:
+    driver: bridge
