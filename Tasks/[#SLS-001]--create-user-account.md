@@ -6,7 +6,7 @@ Decsription: Create a user account for the web application.
 - get into the sellshoes project directory `cd sellshoes`
 - install the requirements.txt file `pip install -r requirements.txt`
 - create a new django app called account `python manage.py startapp accounts` 
-  - do not forget to add the app to the installed apps in the _settings.py_ file
+  >> do not forget to add the app to the installed apps in the _settings.py_ file
 - create a custom user model see by abstracting and extending Baseusermanager and AbstractBaseUser see #Refs below for more details
 - add the custom user model to the _settings.py_ file
 - make migrations and migrate into the database
