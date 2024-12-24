@@ -1,5 +1,3 @@
----
-
 ### Cloudinary Media Storage Setup
 
 1. **Install Cloudinary Dependency**  
@@ -13,8 +11,8 @@
    In your `settings.py` file, add `cloudinary` and `cloudinary_storage` to the `INSTALLED_APPS` list:
 
    ```python
+   
    INSTALLED_APPS = [
-       # other apps...
        'cloudinary',
        'cloudinary_storage',
    ]

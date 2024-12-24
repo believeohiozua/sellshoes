@@ -1,5 +1,3 @@
----
-
 ### Open API Documentation Setup
 
 1. **Install the Dependency**  

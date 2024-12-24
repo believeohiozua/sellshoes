@@ -1,5 +1,3 @@
----
-
 ### Email Configuration Setup
 
 1. **Create an Experimental Gmail Account:**
