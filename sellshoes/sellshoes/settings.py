@@ -40,14 +40,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
-    # Local apps
-    "accounts",
 ]
 
 INSTALLED_APPS += [
     # Third-party apps
     "corsheaders",
+    "accounts",
 ]
 
 MIDDLEWARE = [
