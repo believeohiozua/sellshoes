@@ -23,8 +23,6 @@
 
    ```python
    import cloudinary
-   import cloudinary.uploader
-   import cloudinary.api
 
    CLOUDINARY_STORAGE = {
        'CLOUD_NAME': 'your-cloud-name',  # Replace with your Cloudinary cloud name
