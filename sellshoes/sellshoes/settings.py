@@ -15,6 +15,8 @@ from pathlib import Path
 from decouple import config
 from django.core.management.utils import get_random_secret_key
 
+import cloudinary
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,8 +42,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    
     "rest_framework",
     "drf_yasg",
+    "cloudinary",
+    "cloudinary_storage",
+    
 ]
 
 INSTALLED_APPS += [
@@ -187,3 +193,22 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="ups.chime@gmail.com", cast=str)
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="dqakzhfxcsufacod", cast=str)
 SERVER_EMAIL = EMAIL_HOST_USER
+
+# CLOUDINARY
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dmt7sdytu',
+    'API_KEY': '523771476165756',
+    'API_SECRET': 'RI75F8gWbwdbag9SIj22FsCaaio',
+}
+
+DEFAULT_AUTO_FIELD = 'cloudinary_storage.storage.MediaCloudStorage'
+MEDIA_URL = '/media/'
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dmt7sdytu',
+    'API_KEY': '523771476165756', 
+    'API_SECRET': 'RI75F8gWbwdbag9SIj22FsCaaio',
+    'SECURE': True,
+    'CACHE_PREVIOUS_VERSION': True,
+}
