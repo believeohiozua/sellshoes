@@ -177,3 +177,13 @@ SWAGGER_SETTINGS = {
     'DEFAULT_TERMS_OF_SERVICE_URL': 'https://example.com/terms/',
     'DEFAULT_SCHEMA_URL': 'http://json-schema.org/draft-07/schema#',
 }
+
+# EMAIL CONFIGURATION
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="ups.chime@gmail.com", cast=str)
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="dqakzhfxcsufacod", cast=str)
+SERVER_EMAIL = EMAIL_HOST_USER
