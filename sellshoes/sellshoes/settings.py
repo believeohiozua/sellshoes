@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "drf_yasg",
 ]
 
 INSTALLED_APPS += [
@@ -161,4 +162,18 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+}
+
+# SWAGGER CONFIGURATION
+SWAGGER_SETTINGS = {
+    'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_yasg.inspectors.AutoSchema',
+    'DEFAULT_GENERATOR_CLASS': 'drf_yasg.generators.OpenAPISchemaGenerator',
+    'DEFAULT_TITLE': 'Sellshoes API',
+    'DEFAULT_DESCRIPTION': 'API documentation for Sellshoes project',
+    'DEFAULT_VERSION': '1.0.0',
+    'DEFAULT_CONTACT_EMAIL': 'contact@example.com',
+    'DEFAULT_LICENSE_NAME': 'MIT License',
+    'DEFAULT_LICENSE_URL': 'https://opensource.org/licenses/MIT',
+    'DEFAULT_TERMS_OF_SERVICE_URL': 'https://example.com/terms/',
+    'DEFAULT_SCHEMA_URL': 'http://json-schema.org/draft-07/schema#',
 }
