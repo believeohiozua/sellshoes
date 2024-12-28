@@ -186,19 +186,19 @@ SWAGGER_SETTINGS = {
 
 # EMAIL CONFIGURATION
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="ups.chime@gmail.com", cast=str)
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="dqakzhfxcsufacod", cast=str)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default="ups.chime@gmail.com", cast=str)
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 SERVER_EMAIL = EMAIL_HOST_USER
 
 # CLOUDINARY
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dmt7sdytu',
-    'API_KEY': '523771476165756',
-    'API_SECRET': 'RI75F8gWbwdbag9SIj22FsCaaio',
+    'API_KEY': config('API_KEY'),
+    'API_SECRET': config('API_SECRET'),
 }
 
 DEFAULT_AUTO_FIELD = 'cloudinary_storage.storage.MediaCloudStorage'
@@ -207,8 +207,8 @@ MEDIA_URL = '/media/'
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dmt7sdytu',
-    'API_KEY': '523771476165756', 
-    'API_SECRET': 'RI75F8gWbwdbag9SIj22FsCaaio',
+    'API_KEY': config('API_KEY'),
+    'API_SECRET': config('API_SECRET'),
     'SECURE': True,
     'CACHE_PREVIOUS_VERSION': True,
 }
