@@ -1,0 +1,4 @@
+EMAIL_HOST_USER = 'your-email'
+EMAIL_HOST_PASSWORD = 'AppPassword'
+API_KEY = 'CloudinaryAPIKey'
+API_SECRET ='CloudinaryAPISecret'

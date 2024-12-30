@@ -43,17 +43,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     
-    "rest_framework",
-    "drf_yasg",
-    "cloudinary",
-    "cloudinary_storage",
-    
 ]
 
 INSTALLED_APPS += [
     # Third-party apps
     "corsheaders",
     "accounts",
+    "rest_framework",
+    "drf_yasg",
+    "cloudinary",
+    "cloudinary_storage",
 ]
 
 MIDDLEWARE = [
@@ -199,16 +198,10 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dmt7sdytu',
     'API_KEY': config('API_KEY'),
     'API_SECRET': config('API_SECRET'),
+    'SECURE': True,
+    'CACHE_PREVIOUS_VERSION': True,
 }
 
 DEFAULT_AUTO_FIELD = 'cloudinary_storage.storage.MediaCloudStorage'
 MEDIA_URL = '/media/'
 
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dmt7sdytu',
-    'API_KEY': config('API_KEY'),
-    'API_SECRET': config('API_SECRET'),
-    'SECURE': True,
-    'CACHE_PREVIOUS_VERSION': True,
-}
