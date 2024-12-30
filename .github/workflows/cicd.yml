@@ -8,6 +8,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      
+      - name: Create .env File
+        run: |
+          cat <<EOF > sellshoes/sellshoes/.env
+          EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}
+          EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}
+          API_KEY=${{ secrets.API_KEY }}
+          API_SECRET=${{ secrets.API_SECRET }}          
+          EOF
 
       - name: Startup Services
         run: docker compose up -d
@@ -23,12 +32,11 @@ jobs:
       - name: Run All Migrations
         run: docker compose exec -T api poetry run python manage.py migrate
         
- #TODO: Uncomment this block to run API tests
-    #   - name: Run Unit Tests
-    #     run: docker compose exec be pytest -v
-
+      - name: Run Unit Tests
+        run: docker compose exec api pytest -v
+#TODO: Uncomment this block to run API schemathesis tests
     #   - name: Run API Tests
-    #     run: docker compose exec be schemathesis run https://127.0.0.1:8000/api-test/swagger.json --request-tls-verify=false -v
+    #     run: docker compose exec api schemathesis run https://127.0.0.1:8000/test/swagger.json --request-tls-verify=false -v
 
       - name: Shutdown Services
         run: docker compose down -v

@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-# import dj_database_url
+import dj_database_url
 from pathlib import Path
 from decouple import config
 from django.core.management.utils import get_random_secret_key
@@ -28,7 +28,7 @@ SECRET_KEY = config("SECRET_KEY", default=get_random_secret_key(), cast=str)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0"]
 
 
 # Application definition
@@ -84,13 +84,13 @@ WSGI_APPLICATION = "sellshoes.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 #TODO: custom database configuration
-# DATABASES = {"default": dj_database_url.config(conn_max_age=60)}
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+DATABASES = {"default": dj_database_url.config(conn_max_age=60)}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 
 
