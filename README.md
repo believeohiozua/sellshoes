@@ -14,14 +14,14 @@ An E-commerce poject
 - to run tests, run `docker compose exec api python manage.py test`
 
 - To run api test with semathesis 
-    - ```bash
+```bash
     docker compose exec api schemathesis run https://127.0.0.1:8000/test/swagger.json --request-tls-verify=false -v
-   ```
+```
 
 #### Postgress to workbench
 - To connect to the postgres database from docker to the workbench
-    - run `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id` to get the ip address of the container
-    then use the connection string `postgres://dbuser:password@<container_ip>:5432/sellshoesdb` to connect to the database
+    - `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id` to get the ip address of the container
+    - then use the connection string `postgres://dbuser:password@<container_ip>:5432/sellshoesdb` to connect to the database
 
 
 - Tasks: all tasks are in the [Tasks](./Tasks) folder.
