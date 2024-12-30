@@ -22,6 +22,7 @@ An E-commerce poject
 - To connect to the postgres database from docker to the workbench
     - `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id` to get the ip address of the container
     - then use the connection string `postgres://dbuser:password@<container_ip>:5432/sellshoesdb` to connect to the database
+- Or use the pgadmin configured in the docker-compose file to connect to pgadmin on your browser by following the example in this [video](https://www.youtube.com/watch?v=t8tIA1_CT_Q)
 
 
 - Tasks: all tasks are in the [Tasks](./Tasks) folder.
