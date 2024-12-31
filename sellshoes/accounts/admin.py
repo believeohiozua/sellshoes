@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from .models import CustomUser
 
-
+#  Custom user admin class
 class CustomUserAdmin(UserAdmin):
     # The forms to add and change user instances will come from UserAdmin
     model = CustomUser

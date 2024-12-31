@@ -100,7 +100,6 @@ DATABASES = {"default": dj_database_url.config(conn_max_age=60)}
 # }
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -171,7 +170,6 @@ REST_FRAMEWORK = {
 
 # SWAGGER CONFIGURATION
 SWAGGER_SETTINGS = {
-    'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_yasg.inspectors.AutoSchema',
     'DEFAULT_GENERATOR_CLASS': 'drf_yasg.generators.OpenAPISchemaGenerator',
     'DEFAULT_TITLE': 'Sellshoes API',
     'DEFAULT_DESCRIPTION': 'API documentation for Sellshoes project',
