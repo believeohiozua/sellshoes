@@ -1,71 +1,62 @@
 import pytest
-from django.contrib.auth import get_user_model
+
 from rest_framework.test import APIClient
-from rest_framework import status
+
+from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 User = get_user_model()
 
 @pytest.fixture
 def api_client():
-    """Fixture to provide an API client."""
+    """Fixture to provide API client."""
     return APIClient()
 
 @pytest.fixture
-def create_user():
-    """Fixture to create a user in the database."""
-    def _create_user(email, first_name, last_name, password):
-        return User.objects.create_user(email=email, first_name=first_name, last_name=last_name, password=password)
-    return _create_user
+def signup_url():
+    """Fixture for signup endpoint URL."""
+    return reverse("signup")  # Replace 'signup' with your URL pattern name
+
+@pytest.fixture
+def valid_user_data():
+    """Fixture for valid user signup data."""
+    return {
+        "email": "validuser@example.com",
+        "first_name": "Valid",
+        "last_name": "User",
+        "password": "strongpassword123",
+        "confirm_password": "strongpassword123",
+    }
 
 @pytest.mark.django_db
-class TestSignupEndpoint:
-    endpoint = "/accounts/signup/"  # Replace with your actual signup endpoint URL
+def test_successful_signup(api_client, signup_url, valid_user_data):
+    """Test successful signup with valid and unique details."""
+    response = api_client.post(signup_url, valid_user_data)
+    assert response.status_code == 201
+    assert response.data["message"] == "Signup successful"
+    assert response.data["data"]["email"] == valid_user_data["email"]
+    assert User.objects.filter(email=valid_user_data["email"]).exists()
 
-    def test_successful_signup(self, api_client):
-        """Verify that a user can sign up with valid and unique details."""
-        payload = {
-            "email": "testuser@example.com",
-            "first_name": "Test",
-            "last_name": "User",
-            "password": "password123",
-            "confirm_password": "password123",
-        }
-        response = api_client.post(self.endpoint, payload)
-        assert response.status_code == status.HTTP_201_CREATED
-        assert User.objects.filter(email="testuser@example.com").exists()
-
-    def test_duplicate_email_signup(self, api_client, create_user):
-        """Confirm that the endpoint returns an error for duplicate email."""
-        create_user(
-            email="duplicate@example.com",
-            first_name="Existing",
-            last_name="User",
-            password="password123"
-        )
-        payload = {
-            "email": "duplicate@example.com",
-            "first_name": "New",
-            "last_name": "User",
-            "password": "password123",
-            "confirm_password": "password123",
-        }
-        response = api_client.post(self.endpoint, payload)
-        assert response.status_code == status.HTTP_400_BAD_REQUEST
-        assert "email" in response.data
-        assert response.data["email"] == ["This email is already registered."]
-
-    def test_invalid_email_format(self, api_client):
-        """Ensure that an error is returned for invalid email formats."""
-        payload = {
-            "email": "invalid-email",
-            "first_name": "Test",
-            "last_name": "User",
-            "password": "password123",
-            "confirm_password": "password123",
-        }
-        response = api_client.post(self.endpoint, payload)
-        assert response.status_code == status.HTTP_400_BAD_REQUEST
-        assert "email" in response.data
-        assert response.data["email"] == ["Enter a valid email address."]
+@pytest.mark.django_db
+def test_duplicate_email_signup(api_client, signup_url, valid_user_data):
+    """Test duplicate email signup."""
+    # Create a user with the same email
+    User.objects.create_user(
+        email=valid_user_data["email"],
+        first_name="Existing",
+        last_name="User",
+        password="existingpassword123",
+    )
+    response = api_client.post(signup_url, valid_user_data)
+    assert response.status_code == 400
+    assert "custom user with this email already exists." in str(response.data["error"]["email"][0])
 
 
+@pytest.mark.django_db
+def test_invalid_email_signup(api_client, signup_url, valid_user_data):
+    """Test invalid email format."""
+    invalid_data = valid_user_data.copy()
+    invalid_data["email"] = "invalidemail"
+    response = api_client.post(signup_url, invalid_data)
+    assert response.status_code == 400
+    assert "Enter a valid email address." in response.data["error"]["email"]

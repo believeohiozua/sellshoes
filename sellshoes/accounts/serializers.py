@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
+
+from django.contrib.auth import get_user_model, authenticate
 
 User = get_user_model()
 
@@ -36,3 +37,28 @@ class SignupSerializer(serializers.ModelSerializer):
         validated_data.pop('confirm_password')  # Remove confirm_password from data
         user = User.objects.create_user(**validated_data)
         return user
+
+
+# login Serializer 
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(
+        style={'input_type': 'password'},
+        write_only=True
+    )
+
+    def validate(self, data):
+        """Validate email and password for login."""
+        email = data.get('email')
+        password = data.get('password')
+
+        if not email or not password:
+            raise serializers.ValidationError("Both email and password are required.")
+
+        user = authenticate(username=email, password=password)
+        if not user:
+            raise serializers.ValidationError("Invalid email or password.")
+
+        data['user'] = user
+        return data
+
