@@ -53,6 +53,7 @@ INSTALLED_APPS += [
     "drf_yasg",
     "cloudinary",
     "cloudinary_storage",
+    "rest_framework_simplejwt",
 ]
 
 MIDDLEWARE = [
@@ -160,12 +161,14 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+
 }
 
 # SWAGGER CONFIGURATION
@@ -200,6 +203,6 @@ CLOUDINARY_STORAGE = {
     'CACHE_PREVIOUS_VERSION': True,
 }
 
-DEFAULT_AUTO_FIELD = 'cloudinary_storage.storage.MediaCloudStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_URL = '/media/'
 
