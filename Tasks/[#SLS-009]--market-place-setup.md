@@ -77,8 +77,10 @@
     - products: foreign key to the Cart model
     - shipping_address: foreign key to the shippingAddress model
     - bankcard: foreign key to the Bankcard model
+    - shipping_fee: DecimalField with a maximum of 10 digits and 2 decimal places
+    - total_products_price: DecimalField with a maximum of 10 digits and 2 decimal places
     - total_price: DecimalField with a maximum of 10 digits and 2 decimal places
-    - status: CharField with a maximum length of 20 characters (choices: 'processing' 'shipped', 'delivered', 'cancelled')
+    - status: CharField with a maximum length of 20 characters (choices: 'paid' 'shipped', 'delivered', 'cancelled')
     - tracking_number: CharField with a maximum length of 20 characters
     - created_at: DateTimeField
     - updated_at: DateTimeField

@@ -42,12 +42,13 @@ An E-commerce poject
 
 
 
-- Tasks: all tasks are in the [Tasks](./Tasks) folder.
+## Tasks: 
+- All tasks are in the [Tasks](./Tasks) folder.
 
 
 ## Technologies
 * [Python](https://www.python.org/) : Programming language used for the application
-* [postgres:13-alpine] (https://hub.docker.com/_/postgres) : Database used for the application
+* [postgres](https://hub.docker.com/_/postgres) : Database used for the application
 * [Django Framework](https://www.djangoproject.com/) : Development framework used for the application
 * [Django Rest Framework](https://www.django-rest-framework.org/) : Provides API development tools for easy API development
 * [Github Actions](https://docs.github.com/en/free-pro-team@latest/actions) : Continuous Integration and Deployment
