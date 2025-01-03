@@ -79,6 +79,7 @@
     - bankcard: foreign key to the Bankcard model
     - shipping_fee: DecimalField with a maximum of 10 digits and 2 decimal places
     - total_products_price: DecimalField with a maximum of 10 digits and 2 decimal places
+    - discount: DecimalField with a maximum of 10 digits and 2 decimal places
     - total_price: DecimalField with a maximum of 10 digits and 2 decimal places
     - status: CharField with a maximum length of 20 characters (choices: 'paid' 'shipped', 'delivered', 'cancelled')
     - tracking_number: CharField with a maximum length of 20 characters
