@@ -91,14 +91,12 @@ WSGI_APPLICATION = "sellshoes.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-#TODO: custom database configuration
-DATABASES = {"default": dj_database_url.config(conn_max_age=60)}
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
+DATABASES = {
+    "default": dj_database_url.config(
+        default=config("DATABASE_URL"), conn_max_age=60
+    )
+}
+
 
 
 # Password validation
