@@ -6,7 +6,7 @@
 - Create the following model classes in the `marketplace/models.py` file:
 
   - Product
-    - image: ImageField
+    - image: UrlField
     - name: CharField with a maximum length of 100 characters
     - description: TextField
     - price: DecimalField with a maximum of 10 digits and 2 decimal places
