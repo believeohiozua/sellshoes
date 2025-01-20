@@ -34,6 +34,8 @@
   - Cart
       - user: foreign key to the user model
       - items: ManyToManyField to the CartItem model
+      - coupon: foreign key to the coupon model
+      - discount: DecimalField with a maximum of 10 digits and 2 decimal places
       - total_price: DecimalField with a maximum of 10 digits and 2 decimal places
       - created_at: DateTimeField
       - updated_at: DateTimeField
@@ -85,9 +87,6 @@
     - bankcard: foreign key to the Bankcard model
     - shipping_fee: DecimalField with a maximum of 10 digits and 2 decimal places
     - total_products_price: DecimalField with a maximum of 10 digits and 2 decimal places
-    - coupon: foreign key to the coupon model
-    - discount: DecimalField with a maximum of 10 digits and 2 decimal places
-    - total_price: DecimalField with a maximum of 10 digits and 2 decimal places
     - status: CharField with a maximum length of 20 characters (choices: 'paid' 'shipped', 'delivered', 'cancelled')
     - tracking_number: CharField with a maximum length of 20 characters
     - created_at: DateTimeField
