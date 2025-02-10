@@ -35,6 +35,8 @@ class Cart(BaseModel):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     items = models.ManyToManyField('CartItem', related_name='carts')  # Explicit related_name
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    coupon = models.ForeignKey('Coupon', on_delete=models.CASCADE)
+    discount = models.DecimalField(max_digits=10, decimal_places=2)
 
 # CartItem
 class CartItem(BaseModel):
@@ -76,11 +78,8 @@ class Order(BaseModel):
     bankcard = models.ForeignKey('Bankcard', on_delete=models.CASCADE)
     shipping_fee = models.DecimalField(max_digits=10, decimal_places=2)
     total_products_price = models.DecimalField(max_digits=10, decimal_places=2)
-    coupon = models.ForeignKey('Coupon', on_delete=models.CASCADE)
-    discount = models.DecimalField(max_digits=10, decimal_places=2)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=20, choices=[('paid', 'paid'), ('shipped', 'shipped'), ('delivered', 'delivered'), ('cancelled', 'cancelled')])
     tracking_number = models.CharField(max_length=20)
     
-    # comment 
-    # 
+    
