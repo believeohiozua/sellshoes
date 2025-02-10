@@ -49,6 +49,7 @@ INSTALLED_APPS += [
     # Third-party apps
     "corsheaders",
     "accounts",
+    "marketplace",
     "rest_framework",
     "drf_yasg",
     "cloudinary",
